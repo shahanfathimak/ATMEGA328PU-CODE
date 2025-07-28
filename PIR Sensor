@@ -1,0 +1,41 @@
+✅ PIR Sensor – Simple Note
+🔷 What is a PIR Sensor?
+PIR stands for Passive Infrared.
+
+It detects motion by sensing infrared radiation (heat) from humans or animals.
+
+It does not emit anything; it only detects.
+
+🔷 How It Works
+Every living body emits infrared (IR) radiation.
+
+The PIR sensor has two slots inside. When a person moves in front of it:
+
+One slot senses more IR than the other.
+
+This change triggers the output pin to go HIGH.
+
+connection to Arduino UNO:
+vcc(left)->5v
+out(middle)->Digital pin
+GND(right)->GND
+
+Code:
+void setup() {
+pinMode(2,INPUT);
+Serial.begin(9600);
+
+}
+
+void loop() {
+  int x=digitalRead(2);
+  if(x==1){
+  Serial.println("Motion detected");
+  }
+  else{
+      Serial.println("Motion not detected");
+  }
+  delay(500);
+}
+
+
