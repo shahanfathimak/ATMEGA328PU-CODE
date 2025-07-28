@@ -1,0 +1,66 @@
+📘 TM1637 4-Digit 7-Segment Display – Simple Note
+🔹 What is TM1637?
+TM1637 is an IC (chip) used to control 4-digit 7-segment LED displays.
+
+It reduces the number of wires needed — only 2 pins (CLK and DIO) are used to control the display.
+
+🔹 Features:
+4 digits, 7 segments per digit
+
+Optional colon (used in time display)
+
+Adjustable brightness
+
+Only 2 Arduino pins needed
+
+🔹 Pin Description:
+Pin	Function
+VCC	Power (5V)
+GND	Ground
+DIO	Data I/O
+CLK	Clock
+
+🔹 Arduino Connection:
+TM1637	Arduino
+VCC	5V
+GND	GND
+DIO	D2
+CLK	D3
+
+(You can change DIO and CLK pins in code.)
+
+🔹 Library Used:
+👉 TM1637TinyDisplay or TM1637Display
+
+Install via:
+
+Arduino IDE → Sketch → Include Library → Manage Libraries
+
+Search: TM1637TinyDisplay or TM1637Display
+
+🔹 Applications:
+Digital clocks
+
+Countdown timers
+
+Sensor readings (like temperature, distance)
+
+Scoreboards
+
+code:
+#include <TM1637TinyDisplay.h>
+
+// Define connections
+#define CLK 3   // Clock pin
+#define DIO 2   // Data pin
+
+TM1637TinyDisplay display(CLK, DIO);
+
+void setup() {
+  display.setBrightness(7);         // Brightness (0–7)
+  display.showNumber(1234);         // Display number 1234
+}
+
+void loop() {
+  // Nothing in loop
+}
