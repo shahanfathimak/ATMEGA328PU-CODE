@@ -1,0 +1,40 @@
+✅ LCD Display with I2C – External Notes
+🔷 1. Introduction
+An I2C LCD is a regular 16x2 or 20x4 LCD attached to an I2C interface module (PCF8574).
+
+It reduces the number of Arduino pins used from 6 to just 2: SDA and SCL.
+
+Common I2C addresses: 0x27 or 0x3F.
+
+🔷 2. Components Required
+Component	Quantity
+Arduino UNO/Nano/Mega	1
+I2C LCD 16x2 Display	1
+Jumper Wires	4
+Breadboard (optional)	1
+
+🔷 3. Circuit Connections
+I2C LCD Pin	Arduino UNO	Description
+GND	GND	Ground
+VCC	5V	Power supply
+SDA	A4	I2C Data line
+SCL	A5	I2C Clock line
+
+📝 Note: On Mega → SDA = pin 20, SCL = pin 21. On ESP32/ESP8266, it varies.
+code:
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+void setup() {
+lcd.init();
+lcd.backlight();
+lcd.home();
+
+}
+
+void loop() {
+  lcd.setCursor(0,0);
+  lcd.print("hello");
+
+}
