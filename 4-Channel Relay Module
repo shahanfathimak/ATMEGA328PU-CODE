@@ -1,0 +1,105 @@
+🔧 What is HW-316 (4-Channel Relay Module)?
+The HW-316 is a 4-channel relay module used to control high-voltage AC devices (like bulbs, fans, etc.) using a low-voltage microcontroller like Arduino.
+
+Each relay acts as an electrically controlled switch. You send a signal from Arduino (LOW or HIGH), and the relay either connects or disconnects the high-voltage circuit.
+
+📦 Specifications
+Feature	Value
+Operating Voltage	5V DC
+Channels	4
+Relay Type	Electromechanical (SPDT)
+Max Load	AC 250V 10A, DC 30V 10A
+Trigger Mode	LOW-level trigger (active LOW)
+Optocoupler	Yes (for isolation)
+Indicator LEDs	Yes (for each relay channel)
+
+🧃 Pin Description (HW-316)
+🟦 Control Side (DC, Low-voltage side):
+Pin	Description
+VCC	5V from Arduino
+GND	Ground from Arduino
+IN1 to IN4	Relay control inputs (LOW to activate)
+
+🔴 Load Side (AC/High-voltage side):
+Each relay has:
+
+COM (Common)
+
+NO (Normally Open)
+
+NC (Normally Closed)
+
+Wiring Example for One Channel:
+
+Bulb ON when relay is triggered: Use COM and NO
+
+Bulb OFF when relay is triggered: Use COM and NC
+
+⚙️ Wiring with Arduino UNO
+Relay Module Pin	Arduino UNO
+VCC	5V
+GND	GND
+IN1	D7
+IN2	D6
+IN3	D5
+IN4	D4
+
+💻 Simple Code Example
+This turns on and off each relay one after the other with 1-second delay.
+
+cpp
+Copy
+Edit
+#define RELAY1 7
+#define RELAY2 6
+#define RELAY3 5
+#define RELAY4 4
+
+void setup() {
+  pinMode(RELAY1, OUTPUT);
+  pinMode(RELAY2, OUTPUT);
+  pinMode(RELAY3, OUTPUT);
+  pinMode(RELAY4, OUTPUT);
+
+  // Turn off all relays initially (HIGH = OFF for active LOW)
+  digitalWrite(RELAY1, HIGH);
+  digitalWrite(RELAY2, HIGH);
+  digitalWrite(RELAY3, HIGH);
+  digitalWrite(RELAY4, HIGH);
+}
+
+void loop() {
+  digitalWrite(RELAY1, LOW); // Turn ON Relay 1
+  delay(1000);
+  digitalWrite(RELAY1, HIGH); // OFF
+
+  digitalWrite(RELAY2, LOW);
+  delay(1000);
+  digitalWrite(RELAY2, HIGH);
+
+  digitalWrite(RELAY3, LOW);
+  delay(1000);
+  digitalWrite(RELAY3, HIGH);
+
+  digitalWrite(RELAY4, LOW);
+  delay(1000);
+  digitalWrite(RELAY4, HIGH);
+}
+⚠️ Safety Tips
+Never touch the AC side while powered!
+
+Double-check all wiring before powering with AC.
+
+Use a fuse or circuit breaker for added protection.
+
+🧠 Summary
+HW-316 is a 4-channel relay module (5V)
+
+Allows control of high-voltage devices with Arduino
+
+Active LOW: relay turns ON when input pin is set LOW
+
+VCC = 5V, GND = Arduino GND, IN1–IN4 = digital pins
+
+Use COM-NO terminals for typical ON/OFF control
+
